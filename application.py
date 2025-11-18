@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import joblib
+import joblib as joblib
 
 
 scaler = joblib.load("scaler.pkl")
@@ -28,4 +28,5 @@ if st.button("Predict Cluster"):
     new_data = pd.DataFrame([[income, spending]], columns=['Annual Income (k$)', 'Spending Score'])
     new_scaled = scaler.transform(new_data)
     cluster = kmeans.predict(new_scaled)[0]
+
     st.success(f"Predicted Cluster: {cluster} - {cluster_labels.get(cluster, 'Unknown')}")
